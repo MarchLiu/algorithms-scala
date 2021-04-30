@@ -33,7 +33,7 @@ object Select {
     }
   }
 
-  @main def main(): Unit = {
+  def main(args: Array[String]): Unit = {
     val box:mutable.Seq[Int] = mutable.Seq[Int](0, 5, 7, 3, 2, 99)
     println(box)
     sort(box)
