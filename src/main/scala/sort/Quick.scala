@@ -27,12 +27,12 @@ object Quick extends Sort {
 
     val left = seq.filter(item => item < p)
     if(left.size == seq.size){
-      return sort(seq)
+      return sort(seq.tail).appended(p)
     }
 
     val right = seq.filter(item => item >= p)
     if(right.size == seq.size){
-      return sort(seq)
+      return Seq(p)++sort(seq.tail)
     }
 
     return helper(left) ++ helper(right)
