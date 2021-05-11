@@ -11,7 +11,6 @@ import scala.collection.mutable;
  */
 class Stack[E: Ordering] {
   var buffer: mutable.Seq[E] = mutable.Seq[E]()
-  buffer.appended(null)
 
   import Ordering.Implicits._
 
@@ -25,7 +24,7 @@ class Stack[E: Ordering] {
 
   def swim(k: Int): Unit = {
     var idx = k
-    while (idx > 1 && less(idx / 2, idx)) {
+    while (idx >= 1 && less(idx / 2, idx)) {
       exchange(idx / 2, idx)
       idx = idx / 2
     }
@@ -33,10 +32,10 @@ class Stack[E: Ordering] {
 
   def sink(k: Int): Unit = {
     var idx = k
-    val size = buffer.size - 1
-    while (2 * idx <= size) {
+    val last = buffer.size - 1
+    while (2 * idx <= last) {
       var j = 2 * idx
-      if (j < size && less(j, j + 1)) {
+      if (j < last && less(j, j + 1)) {
         j += 1
       }
       if (!less(idx, j)) {
