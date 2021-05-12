@@ -3,6 +3,7 @@ package sort
 import sort.Quick.sort
 
 import scala.collection.mutable
+import scala.util.Random
 
 /**
  * TODO
@@ -30,11 +31,11 @@ class MaxPQ[E: Ordering] extends Stack[E] {
 object MaxPQ {
   def main(args: Array[String]): Unit = {
     val pq = new MaxPQ[Int]()
-    val data = Seq[Int](9, 0, 5, 22, 29, 86, 8, 42, 32, 18, 79, 7, 86, 9, 32, 3, 2, 99)
+    val data:Seq[Int] = for(_ <- 0 to 32) yield Random.nextInt(100)
     println(data)
     for (item <- data) {
       pq.insert(item)
-      if (pq.buffer.length > 7) {
+      if (pq.buffer.length > 8) {
         pq.delMax()
       }
     }
