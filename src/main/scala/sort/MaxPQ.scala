@@ -29,16 +29,20 @@ class MaxPQ[E: Ordering] extends Stack[E] {
 }
 
 object MaxPQ {
+  val poolSize = 5
   def main(args: Array[String]): Unit = {
     val pq = new MaxPQ[Int]()
-    val data:Seq[Int] = for(_ <- 0 to 32) yield Random.nextInt(100)
+    val data:Seq[Int] = for(_ <- 0 to 19) yield Random.nextInt(100)
     println(data)
     for (item <- data) {
       pq.insert(item)
-      if (pq.buffer.length > 8) {
+      if (pq.buffer.length > poolSize) {
         pq.delMax()
       }
     }
     println(pq.buffer)
+    println(pq.buffer.sorted.toSeq)
+    val sorted = data.sorted.take(poolSize)
+    println(sorted)
   }
 }
