@@ -140,8 +140,8 @@ class RedBlackTree[K: Ordering, V] {
       } else {
         re.right = delete(re.right, k)
       }
-      return balance(re)
     }
+    return balance(re)
   }
 
   def deleteMin(): Unit = {
